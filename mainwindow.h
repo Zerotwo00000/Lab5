@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include<QStack>
+#include <QStack>
+#include <math.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +30,8 @@ private slots:
     void btnNumClicked();
 
     void binaryOperatorClicked();
+
+    void UnaryOperatorClicked();
 
     void on_btnPeriod_clicked();
 

@@ -20,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnPlus,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
     connect(ui->btnMinus,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
     connect(ui->btnDivide,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
+    connect(ui->btnPercentage,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
+    connect(ui->btnInverse,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
+    connect(ui->btnSqrt,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
+    connect(ui->btnSquare,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -44,12 +48,13 @@ QString MainWindow::calculation(bool *ok)
         else if(op=="-"){
             ret=operand1-operand2;
         }
-        else if(op=="*"){
+        else if(op=="×"){
             ret=operand1*operand2;
         }
-        else if(op=="/"){
+        else if(op=="÷"){
             ret=operand1/operand2;
         }
+        operands.push_back(QString::number(ret));
     }
     else {
         ui->statusbar->showMessage(QString("operands is %1,opcode is %2").arg(operands.size()).arg(opcode.size()));
@@ -74,9 +79,23 @@ void MainWindow::binaryOperatorClicked()
         operands.push_back(operand);
         operand="";
         opcodes.push_back(opcode);
+        QString ret=calculation();
+        ui->display->setText(ret);//可能出现连加，连减等
     }
-    QString ret=calculation();
-    ui->display->setText(ret);//可能出现连加，连减等
+}
+
+void MainWindow::UnaryOperatorClicked()
+{
+    if(operand!=""){
+        double ret=operand.toDouble();
+        operand="";
+        QString op=qobject_cast<QPushButton*>(sender())->text();
+        if(op=="%") ret/=100.0;
+        else if(op=="1/x") ret=1/ret;
+        else if(op=="x²") ret*=ret;
+        else if(op=="√") ret=sqrt(ret);
+        ui->display->setText(QString::number(ret));
+    }
 }
 
 void MainWindow::on_btnPeriod_clicked()
