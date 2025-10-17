@@ -6,6 +6,28 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //设置数字按钮独特的样式
+    ui->btnPlus->setProperty("class","op");
+    ui->btnMinus->setProperty("class","op");
+    ui->btnMultiple->setProperty("class","op");
+    ui->btnDivide->setProperty("class","op");
+    ui->btnDel->setProperty("class","op");
+    ui->btnPeriod->setProperty("class","op");
+    ui->btnEqual->setProperty("class","equal");
+    QString newStyle=R"(
+        QPushButton[class="op"]{
+        background-color:#f9f9f9
+        }
+        QPushButton:hover[class="op"]{
+        background-color: #e8e8e8;
+        }
+        QPushButton[class="equal"]{
+        background-color:#1E88E5
+        }
+    )";
+    this->setStyleSheet(this->styleSheet()+newStyle);
+
     btnNums={
         {Qt::Key_0,ui->btnNum0},
         {Qt::Key_1,ui->btnNum1},
@@ -21,21 +43,15 @@ MainWindow::MainWindow(QWidget *parent)
     foreach (auto btn,btnNums) {
         connect(btn,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
     }
-
-    // connect(ui->btnNum0,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum1,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum2,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum3,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum4,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum5,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum6,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum7,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum8,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    // connect(ui->btnNum9,SIGNAL(clicked()),this,SLOT(btnNumClicked()));
-    connect(ui->btnMultiple,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
-    connect(ui->btnPlus,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
-    connect(ui->btnMinus,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
-    connect(ui->btnDivide,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
+    btnBinarys={
+        {Qt::Key_Plus,ui->btnPlus},
+        {Qt::Key_Minus,ui->btnMinus},
+        {Qt::Key_Asterisk,ui->btnMultiple},
+        {Qt::Key_Slash,ui->btnDivide},
+    };
+    foreach (auto btn, btnBinarys) {
+        connect(btn,SIGNAL(clicked()),this,SLOT(binaryOperatorClicked()));
+    }
     connect(ui->btnPercentage,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
     connect(ui->btnInverse,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
     connect(ui->btnSqrt,SIGNAL(clicked()),this,SLOT(UnaryOperatorClicked()));
@@ -73,7 +89,8 @@ QString MainWindow::calculation(bool *ok)
         operands.push_back(QString::number(ret));
     }
     else {
-        ui->statusbar->showMessage(QString("operands is %1,opcode is %2").arg(operands.size()).arg(opcode.size()));
+        ret=operands.front().toDouble();
+        //ui->statusbar->showMessage(QString("operands is %1,opcode is %2").arg(operands.size()).arg(opcode.size()));
     }
     return QString::number(ret);
 }
@@ -131,6 +148,7 @@ void MainWindow::on_btnDel_clicked()
 void MainWindow::on_btnClearAll_clicked()
 {
     operand.clear();
+    operands.clear();
     ui->display->setText(operand);
 }
 
@@ -151,7 +169,29 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     foreach (auto btnKey, btnNums.keys()) {
         if(btnKey==event->key()) btnNums[btnKey]->animateClick();
     }
+    //绑定加减乘除
+    foreach (auto btnKey, btnBinarys.keys()) {
+        if(btnKey==event->key()) btnBinarys[btnKey]->animateClick();
+    }
 }
 
 
+
+
+void MainWindow::on_btnSign_clicked()
+{
+    QString ret=ui->display->text();
+    if(ret!="0"&&ret!="0."){ //这两种情况不需要转换符号
+        if(ret.indexOf('-')<0){ //看看是否存在减号
+            //不存在就添加
+            ret="-"+ret;
+        }
+        else {
+            //存在就截取掉-号
+            ret=ret.mid(1);
+        }
+    }
+    operand=ret;
+    ui->display->setText(operand);
+}
 

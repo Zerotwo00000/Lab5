@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>计算器-李宝辉-2023414300207</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/images/Cal.png</normaloff>:/images/Cal.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
     background-color: #f5f5f5;
@@ -406,6 +410,8 @@ QLineEdit {
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

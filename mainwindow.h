@@ -26,7 +26,8 @@ public:
     QString opcode;
     QStack<QString>operands;
     QStack<QString>opcodes;
-    QMap<int,QPushButton *>btnNums;
+    QMap<int,QPushButton *>btnNums;//绑定数字
+    QMap<int,QPushButton *>btnBinarys;//绑定双操作数
 
     QString calculation(bool *ok=NULL);
 
@@ -46,6 +47,8 @@ private slots:
     void on_btnEqual_clicked();
 
     virtual void keyPressEvent(QKeyEvent *event);
+
+    void on_btnSign_clicked();
 
 private:
     Ui::MainWindow *ui;
