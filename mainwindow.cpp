@@ -26,6 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
     QLabel *author=new QLabel(ui->statusbar);//调用后可以自动销毁，一定要传个父组件
     author->setText(tr("李宝辉"));
     ui->statusbar->addPermanentWidget(author);
+
+    ui->action_Copy->setEnabled(false);
+    ui->action_Paste->setEnabled(false);
+    ui->action_Cut->setEnabled(false);
+    ui->action_Undo->setEnabled(false);
+    ui->action_Redo->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -176,5 +182,62 @@ bool MainWindow::userEditConfirmed()
         }
     }
     return true;
+}
+
+
+void MainWindow::on_action_Undo_triggered()
+{
+    ui->TextEdit->undo();
+}
+
+
+void MainWindow::on_action_Redo_triggered()
+{
+    ui->TextEdit->redo();
+}
+
+
+void MainWindow::on_action_Cut_triggered()
+{
+    ui->TextEdit->cut();
+    ui->action_Paste->setEnabled(true);
+}
+
+
+void MainWindow::on_action_Copy_triggered()
+{
+    ui->TextEdit->copy();
+    ui->action_Paste->setEnabled(true);
+}
+
+
+void MainWindow::on_action_Paste_triggered()
+{
+    ui->TextEdit->paste();
+}
+
+
+void MainWindow::on_TextEdit_copyAvailable(bool b)
+{
+    ui->action_Copy->setEnabled(b);
+    ui->action_Cut->setEnabled(b);
+}
+
+
+void MainWindow::on_TextEdit_redoAvailable(bool b)
+{
+    ui->action_Redo->setEnabled(b);
+}
+
+
+void MainWindow::on_TextEdit_undoAvailable(bool b)
+{
+    ui->action_Undo->setEnabled(b);
+}
+
+
+void MainWindow::on_action_SelectAll_triggered()
+{
+    ui->TextEdit->selectAll();
 }
 
