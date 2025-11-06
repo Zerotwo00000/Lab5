@@ -63,6 +63,14 @@ private slots:
 
     void on_action_EditorBackgroundColor_triggered();
 
+    void on_action_ToolBar_triggered();
+
+    void on_action_StatusBar_triggered();
+
+    void on_action_Exit_triggered();
+
+    void on_TextEdit_cursorPositionChanged();
+
 private:
     Ui::MainWindow *ui;
 

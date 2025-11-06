@@ -17,11 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     textChanged=false;
 
-    statusLabel.setMinimumWidth(150);
+    statusLabel.setMinimumWidth(200);
     statusLabel.setText("length:"+QString::number(0)+"    line:"+QString::number(1));
     ui->statusbar->addPermanentWidget(&statusLabel);
 
-    statusCursorLabel.setMinimumWidth(150);
+    statusCursorLabel.setMinimumWidth(200);
     statusCursorLabel.setText("Ln:"+QString::number(0)+"    Col:"+QString::number(1));
     ui->statusbar->addPermanentWidget(&statusCursorLabel);
 
@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->action_Undo->setEnabled(false);
     ui->action_Redo->setEnabled(false);
 
+    //初始化了反而不好使，因为本来默认就是换行
     QPlainTextEdit::LineWrapMode mode=ui->TextEdit->lineWrapMode();
     if(mode==QTextEdit::NoWrap){
         ui->TextEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
@@ -44,6 +45,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->TextEdit->setLineWrapMode(QPlainTextEdit::NoWrap);
         ui->action_AutoWrap->setChecked(true);
     }
+
+    ui->action_ToolBar->setChecked(true);
+    ui->action_StatusBar->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -168,6 +172,9 @@ void MainWindow::on_TextEdit_textChanged()
         this->setWindowTitle("*"+this->windowTitle());
         textChanged=true;
     }
+
+    statusLabel.setText("length:"+QString::number(ui->TextEdit->toPlainText().length())
+                        +"    line:"+QString::number(ui->TextEdit->document()->lineCount()));
 }
 
 bool MainWindow::userEditConfirmed()
@@ -301,5 +308,48 @@ void MainWindow::on_action_EditorBackgroundColor_triggered()
         this->setStyleSheet(QString("QMainWindow{background-color:%1}").arg(color.name()));
     }
     //设计编辑器背景颜色，没法了只能拿mainwindow来了哈哈
+}
+
+
+void MainWindow::on_action_ToolBar_triggered()
+{
+    bool visible=ui->toolBar->isVisible();
+    ui->toolBar->setVisible(!visible);
+    ui->action_ToolBar->setChecked(!visible);
+}
+
+
+void MainWindow::on_action_StatusBar_triggered()
+{
+    bool visible=ui->statusbar->isVisible();
+    ui->statusbar->setVisible(!visible);
+    ui->action_StatusBar->setChecked(!visible);
+}
+
+
+void MainWindow::on_action_Exit_triggered()
+{
+    if(userEditConfirmed()){
+        exit(0);
+    }
+}
+
+
+void MainWindow::on_TextEdit_cursorPositionChanged()
+{
+    int col=0;
+    int ln=0;
+    int flg=-1;
+    int pos=ui->TextEdit->textCursor().position();//获取的是在整个文本中的位置
+    QString text=ui->TextEdit->toPlainText();//获取到纯文本
+    for(int i=0;i<pos;i++){
+        if(text[i]=='\n'){
+            ln++;
+            flg=i;
+        }
+    }
+    flg++;
+    col=pos-flg;
+    statusCursorLabel.setText("Ln:"+QString::number(ln+1)+"    Col:"+QString::number(col+1));
 }
 
