@@ -48,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->action_ToolBar->setChecked(true);
     ui->action_StatusBar->setChecked(true);
+    ui->action_ShowLineNo->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -351,5 +352,14 @@ void MainWindow::on_TextEdit_cursorPositionChanged()
     flg++;
     col=pos-flg;
     statusCursorLabel.setText("Ln:"+QString::number(ln+1)+"    Col:"+QString::number(col+1));
+}
+
+
+void MainWindow::on_action_ShowLineNo_triggered()
+{
+    // 获取当前行号显示状态
+    bool IsVisible = ui->TextEdit->isLineNumbersVisible();
+    ui->TextEdit->setLineNumbersVisible(!IsVisible);
+    ui->action_ShowLineNo->setChecked(!IsVisible);
 }
 

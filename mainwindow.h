@@ -71,6 +71,8 @@ private slots:
 
     void on_TextEdit_cursorPositionChanged();
 
+    void on_action_ShowLineNo_triggered();
+
 private:
     Ui::MainWindow *ui;
 
