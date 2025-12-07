@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/logout.png</file>
+        <file>images/return.png</file>
+        <file>images/system-2.png</file>
+    </qresource>
+</RCC>
