@@ -3,5 +3,24 @@
         <file>images/logout.png</file>
         <file>images/return.png</file>
         <file>images/system-2.png</file>
+    <qresource prefix="/new/images">
+        <file>img/new.png</file>
+        <file>img/changeLine.png</file>
+        <file>img/check.png</file>
+        <file>img/copy.png</file>
+        <file>img/cut.png</file>
+        <file>img/font.png</file>
+        <file>img/open.png</file>
+        <file>img/paste.png</file>
+        <file>img/recover.png</file>
+        <file>img/replace.png</file>
+        <file>img/save.png</file>
+        <file>img/showLine.png</file>
+        <file>img/status.png</file>
+        <file>img/tool.png</file>
+        <file>img/undo.png</file>
+        <file>img/saveAs.png</file>
+        <file>img/newText.png</file>
+        <file>img/autoSave.png</file>
     </qresource>
 </RCC>
