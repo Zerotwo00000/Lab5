@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QDataWidgetMapper>
+#include <QSqlRelationalTableModel>
 
 class IDatabase : public QObject
 {
@@ -32,14 +33,35 @@ signals:
 
 public:
     bool initPatientModel();
+    bool initDepartmentModel();
+    bool initDoctorModel();
+
     int addNewPatient();
     bool searchPatient(QString fliter);
     void deleteCurrentPatient();
     bool submitPatientEdit();
     void revertPatientEdit();
 
+    int addNewDepartment();
+    bool searchDepartment(QString fliter);
+    void deleteCurrentDepartment();
+    bool submitDepartmentEdit();
+    void revertDepartmentEdit();
+
+    int addNewDoctor();
+    bool searchDoctor(QString fliter);
+    void deleteCurrentDoctor();
+    bool submitDoctorEdit();
+    void revertDoctorEdit();
+
     QSqlTableModel *patientTabModel; //数据模型
     QItemSelectionModel *patientSelection;//选择模型
+
+    QSqlTableModel *departmentTabModel; //数据模型
+    QItemSelectionModel *departmentSelection;//选择模型
+
+    QSqlRelationalTableModel *doctorTabModel; //数据模型
+    QItemSelectionModel *doctorSelection;//选择模型
 
 };
 

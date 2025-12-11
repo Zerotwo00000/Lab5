@@ -15,6 +15,18 @@ public:
     explicit DepartmentView(QWidget *parent = nullptr);
     ~DepartmentView();
 
+private slots:
+    void on_btnSearch_clicked();
+
+    void on_btnAdd_clicked();
+
+    void on_btnDel_clicked();
+
+    void on_btnEdit_clicked();
+
+signals:
+    void goDepartmentEditView(int index);
+
 private:
     Ui::DepartmentView *ui;
 };

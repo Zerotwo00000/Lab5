@@ -41,12 +41,28 @@ void MasterView::goDoctorView()
 {
     doctorView=new DoctorView(this);
     pushWidgetToStackView(doctorView);
+    connect(doctorView,SIGNAL(goDoctorEditView(int)),this,SLOT(goDoctorEditView(int)));
+}
+
+void MasterView::goDoctorEditView(int rowNo)
+{
+    doctorEditView=new DoctorEditView(this,rowNo);
+    pushWidgetToStackView(doctorEditView);
+    connect(doctorEditView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
 }
 
 void MasterView::goDepartmentView()
 {
     departmentView=new DepartmentView(this);
     pushWidgetToStackView(departmentView);
+    connect(departmentView,SIGNAL(goDepartmentEditView(int)),this,SLOT(goDepartmentEditView(int)));
+}
+
+void MasterView::goDepartmentEditView(int rowNo)
+{
+    DepartmentEditView=new departmentEditView(this,rowNo);
+    pushWidgetToStackView(DepartmentEditView);
+    connect(DepartmentEditView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
 }
 
 void MasterView::goPatientView()
