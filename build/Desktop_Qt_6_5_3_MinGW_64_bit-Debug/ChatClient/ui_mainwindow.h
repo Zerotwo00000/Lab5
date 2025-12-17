@@ -34,7 +34,7 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *title;
     QStackedWidget *stackedWidget;
-    QWidget *loginPage;
+    QWidget *chatPage;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QTextEdit *sayLineEdit;
@@ -43,7 +43,7 @@ public:
     QLineEdit *roomTextEdit;
     QPushButton *sayBtn;
     QPushButton *logoutBtn;
-    QWidget *chatPage;
+    QWidget *loginPage;
     QGridLayout *gridLayout_3;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer;
@@ -105,18 +105,18 @@ public:
 
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
-        loginPage = new QWidget();
-        loginPage->setObjectName("loginPage");
-        verticalLayout_2 = new QVBoxLayout(loginPage);
+        chatPage = new QWidget();
+        chatPage->setObjectName("chatPage");
+        verticalLayout_2 = new QVBoxLayout(chatPage);
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        sayLineEdit = new QTextEdit(loginPage);
+        sayLineEdit = new QTextEdit(chatPage);
         sayLineEdit->setObjectName("sayLineEdit");
 
         horizontalLayout->addWidget(sayLineEdit);
 
-        userListWidget = new QListWidget(loginPage);
+        userListWidget = new QListWidget(chatPage);
         userListWidget->setObjectName("userListWidget");
         userListWidget->setMaximumSize(QSize(120, 16777215));
 
@@ -127,17 +127,17 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        roomTextEdit = new QLineEdit(loginPage);
+        roomTextEdit = new QLineEdit(chatPage);
         roomTextEdit->setObjectName("roomTextEdit");
 
         horizontalLayout_2->addWidget(roomTextEdit);
 
-        sayBtn = new QPushButton(loginPage);
+        sayBtn = new QPushButton(chatPage);
         sayBtn->setObjectName("sayBtn");
 
         horizontalLayout_2->addWidget(sayBtn);
 
-        logoutBtn = new QPushButton(loginPage);
+        logoutBtn = new QPushButton(chatPage);
         logoutBtn->setObjectName("logoutBtn");
 
         horizontalLayout_2->addWidget(logoutBtn);
@@ -145,10 +145,10 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_2);
 
-        stackedWidget->addWidget(loginPage);
-        chatPage = new QWidget();
-        chatPage->setObjectName("chatPage");
-        gridLayout_3 = new QGridLayout(chatPage);
+        stackedWidget->addWidget(chatPage);
+        loginPage = new QWidget();
+        loginPage->setObjectName("loginPage");
+        gridLayout_3 = new QGridLayout(loginPage);
         gridLayout_3->setObjectName("gridLayout_3");
         verticalSpacer_2 = new QSpacerItem(20, 153, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -158,7 +158,7 @@ public:
 
         gridLayout_3->addItem(horizontalSpacer, 1, 0, 1, 1);
 
-        loginFrame = new QFrame(chatPage);
+        loginFrame = new QFrame(loginPage);
         loginFrame->setObjectName("loginFrame");
         loginFrame->setMinimumSize(QSize(100, 100));
         loginFrame->setFrameShape(QFrame::StyledPanel);
@@ -214,7 +214,7 @@ public:
 
         gridLayout_3->addItem(verticalSpacer_3, 2, 1, 1, 1);
 
-        stackedWidget->addWidget(chatPage);
+        stackedWidget->addWidget(loginPage);
 
         verticalLayout->addWidget(stackedWidget);
 
@@ -222,7 +222,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

@@ -15,10 +15,9 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTextEdit>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,11 +26,10 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QHBoxLayout *horizontalLayout_2;
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout_2;
     QGroupBox *groupBox;
     QGridLayout *gridLayout;
-    QTextEdit *textEdit;
+    QPlainTextEdit *logEditer;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *startStopButton;
@@ -43,21 +41,19 @@ public:
         MainWindow->resize(800, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        horizontalLayout_2 = new QHBoxLayout(centralwidget);
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName("verticalLayout");
+        gridLayout_2 = new QGridLayout(centralwidget);
+        gridLayout_2->setObjectName("gridLayout_2");
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName("groupBox");
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setObjectName("gridLayout");
-        textEdit = new QTextEdit(groupBox);
-        textEdit->setObjectName("textEdit");
+        logEditer = new QPlainTextEdit(groupBox);
+        logEditer->setObjectName("logEditer");
 
-        gridLayout->addWidget(textEdit, 0, 0, 1, 1);
+        gridLayout->addWidget(logEditer, 1, 0, 1, 1);
 
 
-        verticalLayout->addWidget(groupBox);
+        gridLayout_2->addWidget(groupBox, 0, 0, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
@@ -71,10 +67,7 @@ public:
         horizontalLayout->addWidget(startStopButton);
 
 
-        verticalLayout->addLayout(horizontalLayout);
-
-
-        horizontalLayout_2->addLayout(verticalLayout);
+        gridLayout_2->addLayout(horizontalLayout, 1, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralwidget);
 

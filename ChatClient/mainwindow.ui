@@ -64,9 +64,9 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="loginPage">
+      <widget class="QWidget" name="chatPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
@@ -108,7 +108,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="chatPage">
+      <widget class="QWidget" name="loginPage">
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="1">
          <spacer name="verticalSpacer_2">

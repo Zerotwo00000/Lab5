@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->stackedWidget->setCurrentWidget(ui->loginPage);
 }
 
 MainWindow::~MainWindow()
@@ -15,7 +17,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_loginButton_clicked()
 {
-
+    ui->stackedWidget->setCurrentWidget(ui->chatPage);
 }
 
 
@@ -27,6 +29,6 @@ void MainWindow::on_sayBtn_clicked()
 
 void MainWindow::on_logoutBtn_clicked()
 {
-
+    ui->stackedWidget->setCurrentWidget(ui->loginPage);
 }
 

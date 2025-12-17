@@ -1,5 +1,6 @@
 # 忽略构建文件夹
 build/
+Desktop_Qt_6_5_3_MinGW_64_bit-Debug/
 
 # 忽略Qt用户配置文件
 Lab5.pro.user
