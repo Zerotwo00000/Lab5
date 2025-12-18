@@ -19,7 +19,15 @@ void ChatClient::onReadyRead()
         socketStream.startTransaction(); // 开始事务，可以回滚
         socketStream>>jsonData;
         if(socketStream.commitTransaction()){ // 如果成功读取完整数据包
-            emit messageReceived(QString::fromUtf8(jsonData));
+            //emit messageReceived(QString::fromUtf8(jsonData));
+            QJsonParseError parseError;
+            const QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData,&parseError);// 将字节数组解析为JSON文档
+            if(parseError.error == QJsonParseError::NoError){
+                if(jsonDoc.isObject()){
+                    //emit logMessage(QJsonDocument(jsonDoc).toJson(QJsonDocument::Compact));
+                    emit jsonReceived(jsonDoc.object());
+                }
+            }
         }
         else {
             break;
@@ -44,4 +52,9 @@ void ChatClient::sendMessage(const QString &text, const QString &type)
 void ChatClient::connectToServer(const QHostAddress &address, quint16 port)
 {
     m_clientSocket->connectToHost(address,port);//根据地址和端口连接服务器
+}
+
+void ChatClient::disconnectFromHost()
+{
+    m_clientSocket->disconnectFromHost();
 }
