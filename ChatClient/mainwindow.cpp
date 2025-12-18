@@ -31,6 +31,7 @@ void MainWindow::on_loginButton_clicked()
 void MainWindow::on_sayBtn_clicked()
 {
     if(!ui->sayLineEdit->text().isEmpty()) m_chatClient->sendMessage(ui->sayLineEdit->text());
+    ui->sayLineEdit->clear();//发送完清空才是正常的
 }
 
 
@@ -38,6 +39,11 @@ void MainWindow::on_logoutBtn_clicked()
 {
     m_chatClient->disconnectFromHost();//退出登录应该断开连接
     ui->stackedWidget->setCurrentWidget(ui->loginPage);//切换到登录界面
+
+    for(auto aItem: ui->userListWidget->findItems(ui->UserNameEdit->text(),Qt::MatchExactly)){//退出登录后把用户删除
+        ui->userListWidget->removeItemWidget(aItem);
+        delete aItem;
+    }
 }
 
 void MainWindow::connectedToServer()//服务器连接上之后
@@ -68,10 +74,36 @@ void MainWindow::jsonReceived(const QJsonObject &docObj)
         if(userNameVal.isNull()||!userNameVal.isString()) return ;
         userJoined(userNameVal.toString());//新用户就把他加到用户列表中
     }
+    //处理其它客户端收到其它用户下线的逻辑
+    else if(typeVal.toString().compare("userdisconnected",Qt::CaseInsensitive)==0){
+        const QJsonValue userNameVal =docObj.value("username");
+        if(userNameVal.isNull()||!userNameVal.isString()) return ;
+        userLeft(userNameVal.toString());//在用户列表中移除掉下线的用户
+    }
+    //处理新登录进来的用户没有以前用户列表信息的逻辑
+    else if(typeVal.toString().compare("userlist",Qt::CaseInsensitive)==0){
+        const QJsonValue userlistVal =docObj.value("userlist");
+        if(userlistVal.isNull()||!userlistVal.isArray()) return ;
+        userListReceived(userlistVal.toVariant().toStringList());
+    }
 }
 
 void MainWindow::userJoined(const QString &user)
 {
     ui->userListWidget->addItem(user);
+}
+
+void MainWindow::userLeft(const QString &user)
+{
+    for(auto aItem: ui->userListWidget->findItems(user,Qt::MatchExactly)){//退出登录后把用户删除
+        ui->userListWidget->removeItemWidget(aItem);
+        delete aItem;
+    }
+}
+
+void MainWindow::userListReceived(const QStringList &list)
+{
+    ui->userListWidget->clear();
+    ui->userListWidget->addItems(list);
 }
 

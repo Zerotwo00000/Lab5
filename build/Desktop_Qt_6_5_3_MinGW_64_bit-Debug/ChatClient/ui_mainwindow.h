@@ -31,8 +31,9 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout_4;
     QLabel *title;
+    QLabel *nickname;
     QStackedWidget *stackedWidget;
     QWidget *chatPage;
     QVBoxLayout *verticalLayout_2;
@@ -75,6 +76,17 @@ public:
 "	background-color: #2a5caa;\n"
 "}\n"
 "\n"
+"#nickname {\n"
+"    color: white;\n"
+"    font-size: 24px;\n"
+"    text-align: center;\n"
+"    padding: 5px;\n"
+"    background: white;\n"
+"    border: none;\n"
+"	border-bottom: 1px solid black;\n"
+"	background-color: #2a5caa;\n"
+"}\n"
+"\n"
 "#loginFrame {\n"
 "    background-color: #e6f7ff;\n"
 "    border-radius: 20px;\n"
@@ -92,8 +104,8 @@ public:
 "}"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        verticalLayout = new QVBoxLayout(centralwidget);
-        verticalLayout->setObjectName("verticalLayout");
+        gridLayout_4 = new QGridLayout(centralwidget);
+        gridLayout_4->setObjectName("gridLayout_4");
         title = new QLabel(centralwidget);
         title->setObjectName("title");
         QFont font;
@@ -101,7 +113,14 @@ public:
         title->setStyleSheet(QString::fromUtf8(""));
         title->setAlignment(Qt::AlignCenter);
 
-        verticalLayout->addWidget(title);
+        gridLayout_4->addWidget(title, 0, 0, 1, 1);
+
+        nickname = new QLabel(centralwidget);
+        nickname->setObjectName("nickname");
+        nickname->setMaximumSize(QSize(134, 16777215));
+        nickname->setAlignment(Qt::AlignCenter);
+
+        gridLayout_4->addWidget(nickname, 0, 1, 1, 1);
 
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
@@ -216,7 +235,7 @@ public:
 
         stackedWidget->addWidget(loginPage);
 
-        verticalLayout->addWidget(stackedWidget);
+        gridLayout_4->addWidget(stackedWidget, 1, 0, 1, 2);
 
         MainWindow->setCentralWidget(centralwidget);
 
@@ -232,6 +251,7 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "\350\201\212\345\244\251\345\256\244\345\256\242\346\210\267\347\253\257", nullptr));
         title->setText(QCoreApplication::translate("MainWindow", "\346\235\216\345\256\235\350\276\211\347\232\204\350\201\212\345\244\251\345\256\2442023414300207", nullptr));
+        nickname->setText(QCoreApplication::translate("MainWindow", "\346\230\265\347\247\260", nullptr));
         sayBtn->setText(QCoreApplication::translate("MainWindow", "\345\217\221\351\200\201", nullptr));
         logoutBtn->setText(QCoreApplication::translate("MainWindow", "\351\200\200\345\207\272", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "\346\234\215\345\212\241\345\231\250\345\234\260\345\235\200\357\274\232", nullptr));
