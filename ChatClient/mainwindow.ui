@@ -64,7 +64,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="chatPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -166,7 +166,11 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="ServerEdit"/>
+              <widget class="QLineEdit" name="ServerEdit">
+               <property name="text">
+                <string>127.0.0.1</string>
+               </property>
+              </widget>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_3">
@@ -181,7 +185,11 @@
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QLineEdit" name="UserNameEdit"/>
+              <widget class="QLineEdit" name="UserNameEdit">
+               <property name="text">
+                <string>zayu</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
