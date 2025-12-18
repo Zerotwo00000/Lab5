@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_chatServer=new ChatServer(this);
 
     connect(m_chatServer,&ChatServer::logMessage,this,&MainWindow::logMessage);
-    ui->startStopButton->setText("停止服务器");//一开始刚打开页面应该是启动的状态
+    ui->startStopButton->setText("启动服务器");
 }
 
 MainWindow::~MainWindow()

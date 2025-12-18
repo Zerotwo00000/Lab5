@@ -358,6 +358,7 @@ Makefile: ../../../ChatClient/ChatClient.pro E:/qtC++/6.5.3/mingw_64/mkspecs/win
 		../../../ChatClient/ChatClient.pro \
 		E:/qtC++/6.5.3/mingw_64/lib/Qt6Widgets.prl \
 		E:/qtC++/6.5.3/mingw_64/lib/Qt6Gui.prl \
+		E:/qtC++/6.5.3/mingw_64/lib/Qt6Network.prl \
 		E:/qtC++/6.5.3/mingw_64/lib/Qt6Core.prl \
 		E:/qtC++/6.5.3/mingw_64/lib/Qt6EntryPoint.prl \
 		E:/qtC++/6.5.3/mingw_64/mkspecs/features/build_pass.prf
@@ -650,6 +651,7 @@ E:/qtC++/6.5.3/mingw_64/mkspecs/features/lex.prf:
 ../../../ChatClient/ChatClient.pro:
 E:/qtC++/6.5.3/mingw_64/lib/Qt6Widgets.prl:
 E:/qtC++/6.5.3/mingw_64/lib/Qt6Gui.prl:
+E:/qtC++/6.5.3/mingw_64/lib/Qt6Network.prl:
 E:/qtC++/6.5.3/mingw_64/lib/Qt6Core.prl:
 E:/qtC++/6.5.3/mingw_64/lib/Qt6EntryPoint.prl:
 E:/qtC++/6.5.3/mingw_64/mkspecs/features/build_pass.prf:

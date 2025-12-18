@@ -37,10 +37,10 @@ public:
     QWidget *chatPage;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
-    QTextEdit *sayLineEdit;
+    QTextEdit *roomTextEdit;
     QListWidget *userListWidget;
     QHBoxLayout *horizontalLayout_2;
-    QLineEdit *roomTextEdit;
+    QLineEdit *sayLineEdit;
     QPushButton *sayBtn;
     QPushButton *logoutBtn;
     QWidget *loginPage;
@@ -111,10 +111,10 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        sayLineEdit = new QTextEdit(chatPage);
-        sayLineEdit->setObjectName("sayLineEdit");
+        roomTextEdit = new QTextEdit(chatPage);
+        roomTextEdit->setObjectName("roomTextEdit");
 
-        horizontalLayout->addWidget(sayLineEdit);
+        horizontalLayout->addWidget(roomTextEdit);
 
         userListWidget = new QListWidget(chatPage);
         userListWidget->setObjectName("userListWidget");
@@ -127,10 +127,10 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        roomTextEdit = new QLineEdit(chatPage);
-        roomTextEdit->setObjectName("roomTextEdit");
+        sayLineEdit = new QLineEdit(chatPage);
+        sayLineEdit->setObjectName("sayLineEdit");
 
-        horizontalLayout_2->addWidget(roomTextEdit);
+        horizontalLayout_2->addWidget(sayLineEdit);
 
         sayBtn = new QPushButton(chatPage);
         sayBtn->setObjectName("sayBtn");

@@ -71,7 +71,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QTextEdit" name="sayLineEdit"/>
+           <widget class="QTextEdit" name="roomTextEdit"/>
           </item>
           <item>
            <widget class="QListWidget" name="userListWidget">
@@ -88,7 +88,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLineEdit" name="roomTextEdit"/>
+           <widget class="QLineEdit" name="sayLineEdit"/>
           </item>
           <item>
            <widget class="QPushButton" name="sayBtn">

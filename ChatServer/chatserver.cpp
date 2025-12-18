@@ -1,4 +1,5 @@
 #include "chatserver.h"
+#include <QDebug>
 
 ChatServer::ChatServer(QObject *parent):
     QTcpServer(parent)
@@ -13,6 +14,7 @@ void ChatServer::incomingConnection(qintptr socketDescriptor)
         worker->deleteLater();
         return;
     }
+    connect(worker,&ServerWorker::logMessage,this,&ChatServer::logMessage);
     m_clients.append(worker);//成功了就添加进来
     emit logMessage("新的用户连接上了");
 }
