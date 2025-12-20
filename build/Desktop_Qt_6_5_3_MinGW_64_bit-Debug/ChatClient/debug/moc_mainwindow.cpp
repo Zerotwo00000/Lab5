@@ -53,11 +53,17 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "user",
     "userLeft",
     "userListReceived",
-    "list"
+    "list",
+    "displayPrivateMessage",
+    "timestamp",
+    "isSentByMe",
+    "on_userListWidget_itemDoubleClicked",
+    "QListWidgetItem*",
+    "item"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[32];
+    uint offsetsAndSizes[44];
     char stringdata0[11];
     char stringdata1[23];
     char stringdata2[1];
@@ -74,6 +80,12 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata13[9];
     char stringdata14[17];
     char stringdata15[5];
+    char stringdata16[22];
+    char stringdata17[10];
+    char stringdata18[11];
+    char stringdata19[36];
+    char stringdata20[17];
+    char stringdata21[5];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -94,7 +106,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(151, 4),  // "user"
         QT_MOC_LITERAL(156, 8),  // "userLeft"
         QT_MOC_LITERAL(165, 16),  // "userListReceived"
-        QT_MOC_LITERAL(182, 4)   // "list"
+        QT_MOC_LITERAL(182, 4),  // "list"
+        QT_MOC_LITERAL(187, 21),  // "displayPrivateMessage"
+        QT_MOC_LITERAL(209, 9),  // "timestamp"
+        QT_MOC_LITERAL(219, 10),  // "isSentByMe"
+        QT_MOC_LITERAL(230, 35),  // "on_userListWidget_itemDoubleC..."
+        QT_MOC_LITERAL(266, 16),  // "QListWidgetItem*"
+        QT_MOC_LITERAL(283, 4)   // "item"
     },
     "MainWindow",
     "on_loginButton_clicked",
@@ -111,7 +129,13 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "user",
     "userLeft",
     "userListReceived",
-    "list"
+    "list",
+    "displayPrivateMessage",
+    "timestamp",
+    "isSentByMe",
+    "on_userListWidget_itemDoubleClicked",
+    "QListWidgetItem*",
+    "item"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -123,7 +147,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -131,15 +155,17 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   68,    2, 0x08,    1 /* Private */,
-       3,    0,   69,    2, 0x08,    2 /* Private */,
-       4,    0,   70,    2, 0x08,    3 /* Private */,
-       5,    0,   71,    2, 0x08,    4 /* Private */,
-       6,    2,   72,    2, 0x08,    5 /* Private */,
-       9,    1,   77,    2, 0x08,    8 /* Private */,
-      11,    1,   80,    2, 0x08,   10 /* Private */,
-      13,    1,   83,    2, 0x08,   12 /* Private */,
-      14,    1,   86,    2, 0x08,   14 /* Private */,
+       1,    0,   80,    2, 0x08,    1 /* Private */,
+       3,    0,   81,    2, 0x08,    2 /* Private */,
+       4,    0,   82,    2, 0x08,    3 /* Private */,
+       5,    0,   83,    2, 0x08,    4 /* Private */,
+       6,    2,   84,    2, 0x08,    5 /* Private */,
+       9,    1,   89,    2, 0x08,    8 /* Private */,
+      11,    1,   92,    2, 0x08,   10 /* Private */,
+      13,    1,   95,    2, 0x08,   12 /* Private */,
+      14,    1,   98,    2, 0x08,   14 /* Private */,
+      16,    4,  101,    2, 0x08,   16 /* Private */,
+      19,    1,  110,    2, 0x08,   21 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -151,6 +177,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,   12,
     QMetaType::Void, QMetaType::QString,   12,
     QMetaType::Void, QMetaType::QStringList,   15,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::Bool,    7,    8,   17,   18,
+    QMetaType::Void, 0x80000000 | 20,   21,
 
        0        // eod
 };
@@ -187,7 +215,16 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'userListReceived'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QStringList &, std::false_type>,
+        // method 'displayPrivateMessage'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'on_userListWidget_itemDoubleClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QListWidgetItem *, std::false_type>
     >,
     nullptr
 } };
@@ -207,6 +244,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->userJoined((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 7: _t->userLeft((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 8: _t->userListReceived((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1]))); break;
+        case 9: _t->displayPrivateMessage((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[4]))); break;
+        case 10: _t->on_userListWidget_itemDoubleClicked((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -231,13 +270,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

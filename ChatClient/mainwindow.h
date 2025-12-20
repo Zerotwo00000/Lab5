@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidget>
 #include "chatclient.h"
 
 QT_BEGIN_NAMESPACE
@@ -31,6 +32,9 @@ private slots:
     void userJoined(const QString &user);
     void userLeft(const QString &user);
     void userListReceived(const QStringList &list);
+    void displayPrivateMessage(const QString &sender, const QString &text,const QString &timestamp, bool isSentByMe);
+
+    void on_userListWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
