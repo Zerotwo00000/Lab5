@@ -10,6 +10,21 @@ ChatClient::ChatClient(QObject *parent) : QObject{ parent }
     connect(m_clientSocket,&QTcpSocket::readyRead,this,&ChatClient::onReadyRead);
 }
 
+void ChatClient::sendPrivateMessage(const QString &receiver, const QString &text)//私发消息
+{
+    if(m_clientSocket->state() != QAbstractSocket::ConnectedState) return;
+    if(receiver.isEmpty() || text.isEmpty()) return;
+
+    QDataStream serverStream(m_clientSocket);
+    serverStream.setVersion(QDataStream::Qt_6_5);
+
+    QJsonObject message;
+    message["type"] = "private";
+    message["receiver"] = receiver;
+    message["text"] = text;
+    message["sender"] = m_userName;  // 需要先保存用户名
+    serverStream << QJsonDocument(message).toJson();
+}
 
 void ChatClient::onReadyRead()
 {
